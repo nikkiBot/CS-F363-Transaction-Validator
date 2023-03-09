@@ -43,8 +43,40 @@ $(" ")?[A-Z]+[0-9]+ {
 <REC>[0-9]+"/"[0-9]+(" ") {
     char dy[3];
     dy[0]=yytext[0]; dy[1]=yytext[1]; dy[2]='\0';
+    //error checking :
+    if(dy[0] > 4)
+    {
+        printf("0");
+        exit(EXIT_FAILURE);
+    }
+    if(dy[0] == 0 && dy[1] != 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9)
+    {
+        printf("0");
+        exit(EXIT_FAILURE);
+    }
+    if(dy[0] == 1 | 2 && dy[1] != 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9)
+    {
+        printf("0");
+        exit(EXIT_FAILURE);
+    }
+    if(dy[0] == 3 && dy[1] != 0)
+    {
+        printf("0");
+        exit(EXIT_FAILURE);
+    }
     char mt[3];
     mt[0]=yytext[3]; mt[1]=yytext[4]; mt[3]='\0';
+    //error checking :
+    if(mt[0] == 0 && mt[1] != 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9)
+    {
+        printf("0");
+        exit(EXIT_FAILURE);
+    }
+    if(mt[0] == 1 && mt[1] != 0 | 1 | 2)
+    {
+        printf("0");
+        exit(EXIT_FAILURE);
+    }
 
     t1.d=atoi(dy);
     t1.m=atoi(mt);
