@@ -780,9 +780,9 @@ YY_RULE_SETUP
 #line 34 "test.l"
 {
     t1.val=atoi(yytext);
+    arrVal[t1.d -1 + arrDay[t1.m-1]]++;
     if(arrVal[t1.d -1 + arrDay[t1.m-1]]==0 || arrCust[t1.d -1 + arrDay[t1.m-1]].val < t1.val  )
     { 
-        arrVal[t1.d -1 + arrDay[t1.m-1]]++;
         arrCust[t1.d -1 + arrDay[t1.m-1]]=t1;
     }
 }
@@ -1827,6 +1827,10 @@ void yyfree (void * ptr )
 
 #line 58 "test.l"
 
+int yywrap()
+{ 
+return 1;
+}
 int main(){
     yyin=fopen("data.txt","r+");
     FILE *input = fopen("input.txt", "r");
@@ -1839,8 +1843,10 @@ int main(){
     // int d,m;
      
     // scanf("%d %d",&d,&m);
-     
-    printf("$%d%s#",arrVal[input_date-1+arrDay[input_month-1]],(arrCust[input_date-1+arrDay[input_month-1]]).custId);
+    char *final_ans = (arrCust[input_date-1+arrDay[input_month-1]]).custId ; // custId stores $ so remove that from here 
+    printf("$%d$%s#",arrVal[input_date-1+arrDay[input_month-1]],final_ans+1);
+    //printf("%s\n", s + 1);
+    // s + 1 means start printing from the second character (having index -> 1). 
      
 }
      
