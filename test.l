@@ -23,13 +23,14 @@ char customer[100];
 %} //To use printf
 %s REC
 %%
-"//"(.)* ;
+"//"(.)* ;  
 $(" ")?[A-Z]+[0-9]+ {
     strcpy(customer,yytext);
     // printf("\n%s-",customer);
     BEGIN REC;
 }
-     
+. {}
+"\n" {}
 <REC>[0-9]+ {
     t1.val=atoi(yytext);
     if(arrVal[t1.d -1 + arrDay[t1.m-1]]==0 || arrCust[t1.d -1 + arrDay[t1.m-1]].val < t1.val  )
@@ -68,7 +69,7 @@ int main(){
      
     // scanf("%d %d",&d,&m);
      
-    printf("\n$%d%s#",arrVal[input_date-1+arrDay[input_month-1]],(arrCust[input_date-1+arrDay[input_month-1]]).custId);
+    printf("$%d%s#",arrVal[input_date-1+arrDay[input_month-1]],(arrCust[input_date-1+arrDay[input_month-1]]).custId);
      
 }
      
