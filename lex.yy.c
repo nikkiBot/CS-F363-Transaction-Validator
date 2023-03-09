@@ -351,8 +351,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 8
-#define YY_END_OF_BUFFER 9
+#define YY_NUM_RULES 7
+#define YY_END_OF_BUFFER 8
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -360,10 +360,11 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static const flex_int16_t yy_accept[21] =
+static const flex_int16_t yy_accept[23] =
     {   0,
-        0,    0,    0,    0,    9,    8,    6,    8,    8,    2,
-        4,    0,    0,    7,    0,    2,    5,    1,    3,    0
+        0,    0,    0,    0,    8,    7,    7,    7,    3,    6,
+        0,    0,    1,    0,    3,    6,    5,    2,    1,    0,
+        4,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -400,37 +401,37 @@ static const YY_CHAR yy_ec[256] =
 
 static const YY_CHAR yy_meta[9] =
     {   0,
-        1,    1,    1,    1,    1,    1,    1,    1
+        1,    2,    1,    1,    1,    1,    1,    1
     } ;
 
-static const flex_int16_t yy_base[22] =
+static const flex_int16_t yy_base[25] =
     {   0,
-        0,    4,    4,    0,   23,   24,   24,    9,   16,   13,
-       14,    7,   14,   24,    8,    0,   24,    7,    1,   24,
-        0
+        0,    2,    2,    0,   21,   29,    7,    9,   11,   16,
+        5,   14,    0,    6,    0,   29,   29,    5,    0,   20,
+       29,   29,   26,    0
     } ;
 
-static const flex_int16_t yy_def[22] =
+static const flex_int16_t yy_def[25] =
     {   0,
-       21,   21,    2,    3,   20,   20,   20,   20,   20,   20,
-       20,   20,   20,   20,   20,   10,   20,   20,   20,    0,
-       20
+       23,   23,    2,    3,   22,   22,   22,   22,   22,   22,
+       22,   22,   24,   22,    9,   22,   22,   22,   24,   22,
+       22,    0,   22,   22
     } ;
 
-static const flex_int16_t yy_nxt[33] =
+static const flex_int16_t yy_nxt[38] =
     {   0,
-        6,    7,   20,    8,    9,    7,   19,    8,    9,   10,
-       11,   12,   18,   19,   13,   17,   13,   15,   16,   18,
-       14,   13,   20,    5,   20,   20,   20,   20,   20,   20,
-       20,   20
+       19,   22,   22,    7,    8,    7,    8,    9,   10,   11,
+       18,   20,   12,   13,   12,   14,   15,   16,   17,   18,
+       22,   12,   21,   22,   22,   20,    6,    6,    5,   22,
+       22,   22,   22,   22,   22,   22,   22
     } ;
 
-static const flex_int16_t yy_chk[33] =
+static const flex_int16_t yy_chk[38] =
     {   0,
-       21,    1,    0,    1,    1,    2,   19,    2,    2,    3,
-        3,    8,   18,   15,   12,   11,    8,   10,   10,   13,
-        9,   13,    5,   20,   20,   20,   20,   20,   20,   20,
-       20,   20
+       24,    0,    0,    1,    1,    2,    2,    3,    3,    7,
+       18,   14,   11,    8,    7,    9,    9,   10,   10,   12,
+        5,   12,   20,    0,    0,   20,   23,   23,   22,   22,
+       22,   22,   22,   22,   22,   22,   22
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -447,34 +448,35 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "main.l"
-#line 2 "main.l"
+#line 1 "test.l"
+#line 2 "test.l"
 #include <stdio.h> 
 #include <stdlib.h> 
 #include <string.h> 
 
-char *input_text = NULL ;
+char input_text[10] ;
 int input_date = 0 ;
 int input_month = 0 ;
+
 int valid=0,var=0;
 int arrDay[]={0,31,60,91,121,152,182,213,244,274,305,335};
 int arrVal[366]={0};
-
+     
 struct transaction{
-	int date;
-	int month;
-	char custId[100];
-	int val;
+    	int d;
+    	int m;
+    	char custId[100];
+    	int val;
 };
 struct transaction t1;
 struct transaction arrCust[366];
 char customer[100];
-#line 472 "lex.yy.c"
-
 #line 474 "lex.yy.c"
 
+#line 476 "lex.yy.c"
+
 #define INITIAL 0
-#define RECORD 1
+#define REC 1
 
 #ifndef YY_NO_UNISTD_H
 /* Special case for "unistd.h", since it is non-ANSI. We include it way
@@ -689,9 +691,9 @@ YY_DECL
 		}
 
 	{
-#line 25 "main.l"
+#line 25 "test.l"
 
-#line 694 "lex.yy.c"
+#line 696 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -718,13 +720,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 21 )
+				if ( yy_current_state >= 23 )
 					yy_c = yy_meta[yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 24 );
+		while ( yy_base[yy_current_state] != 29 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -750,77 +752,65 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 26 "main.l"
-{
-	strcpy(customer,yytext);
-	printf("\n%s-",customer);
-	BEGIN RECORD;
-} 
+#line 26 "test.l"
+;
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 32 "main.l"
+#line 27 "test.l"
 {
-	t1.val=atoi(yytext);
-	if(arrVal[t1.date -1 + arrDay[t1.month-1]]==0 || arrCust[t1.date -1 + arrDay[t1.month-1]].val < t1.val  )
-	{ 
-		arrVal[t1.date -1 + arrDay[t1.month-1]]++;
-		arrCust[t1.date -1 + arrDay[t1.month-1]]=t1;
-	}
+    strcpy(customer,yytext);
+    // printf("\n%s-",customer);
+    BEGIN REC;
 }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 41 "main.l"
+#line 33 "test.l"
 {
-	char dy[3];
- 	dy[0]=yytext[0]; dy[1]=yytext[1]; dy[2]='\0';
- 	char mt[3];
- 	mt[0]=yytext[3]; mt[1]=yytext[4]; mt[3]='\0';
- 	t1.date=atoi(dy);
-	if(t1.date > 30 || t1.date < 1)
-	{
-		exit(EXIT_FAILURE);
-	}
-	t1.month=atoi(mt);
-	if(t1.month > 12 || t1.month < 1)
-	{
-		exit(EXIT_FAILURE);
-	}
-	printf("%d-%d",t1.date,t1.month);
- 	strcpy(t1.custId,customer);
+    t1.val=atoi(yytext);
+    if(arrVal[t1.d -1 + arrDay[t1.m-1]]==0 || arrCust[t1.d -1 + arrDay[t1.m-1]].val < t1.val  )
+    { 
+        arrVal[t1.d -1 + arrDay[t1.m-1]]++;
+        arrCust[t1.d -1 + arrDay[t1.m-1]]=t1;
+    }
 }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 59 "main.l"
-{BEGIN RECORD;}
+#line 42 "test.l"
+{
+    char dy[3];
+    dy[0]=yytext[0]; dy[1]=yytext[1]; dy[2]='\0';
+    char mt[3];
+    mt[0]=yytext[3]; mt[1]=yytext[4]; mt[3]='\0';
+
+    t1.d=atoi(dy);
+    t1.m=atoi(mt);
+
+    // printf("%d-%d",t1.d,t1.m);
+    strcpy(t1.custId,customer);
+}
 	YY_BREAK
 case 5:
-/* rule 5 can match eol */
 YY_RULE_SETUP
-#line 60 "main.l"
-{BEGIN 0;}
+#line 54 "test.l"
+{BEGIN REC;}
 	YY_BREAK
 case 6:
 /* rule 6 can match eol */
 YY_RULE_SETUP
-#line 61 "main.l"
-{return 1;}
+#line 55 "test.l"
+{BEGIN 0;} 
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 62 "main.l"
-{}
-	YY_BREAK
-case 8:
-YY_RULE_SETUP
-#line 63 "main.l"
+#line 57 "test.l"
 ECHO;
 	YY_BREAK
-#line 821 "lex.yy.c"
+#line 811 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
-case YY_STATE_EOF(RECORD):
+case YY_STATE_EOF(REC):
 	yyterminate();
 
 	case YY_END_OF_BUFFER:
@@ -1116,7 +1106,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 21 )
+			if ( yy_current_state >= 23 )
 				yy_c = yy_meta[yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1144,11 +1134,11 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 21 )
+		if ( yy_current_state >= 23 )
 			yy_c = yy_meta[yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-	yy_is_jam = (yy_current_state == 20);
+	yy_is_jam = (yy_current_state == 22);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
@@ -1824,22 +1814,22 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 63 "main.l"
-
+#line 57 "test.l"
 
 int main(){
-yyin=fopen("data.txt","r+");
-FILE *input = fopen("input.txt", "r");
-
-yylex();
-
-
-strcpy(input_text,input);
-input_date = (input_text[0] - '0')*10 + (input_text[1] - '0');
-input_month = (input_text[3] - '0')*10 + (input_text[4] - '0');
-
-printf("\n$%d%s",arrVal[input_date-1+arrDay[input_month-1]],(arrCust[input_date-1+arrDay[input_month-1]]).custId);
-
+    yyin=fopen("data.txt","r+");
+    FILE *input = fopen("input.txt", "r");
+    fscanf(input,"%s",input_text);
+    // strcpy(input_text,input);
+    input_date = (input_text[0] - '0')*10 + (input_text[1] - '0');
+    input_month = (input_text[3] - '0')*10 + (input_text[4] - '0');
+    yylex();
+    // printf("Enter day and month as dd mm: ");
+    // int d,m;
+     
+    // scanf("%d %d",&d,&m);
+     
+    printf("\n$%d%s#",arrVal[input_date-1+arrDay[input_month-1]],(arrCust[input_date-1+arrDay[input_month-1]]).custId);
+     
 }
-
-
+     
