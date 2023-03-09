@@ -3,6 +3,9 @@
 #include <stdlib.h> 
 #include <string.h> 
 
+char *input_text = NULL ;
+int input_date = 0 ;
+int input_month = 0 ;
 int valid=0,var=0;
 int arrDay[]={0,31,60,91,121,152,182,213,244,274,305,335};
 int arrVal[366]={0};
@@ -35,27 +38,42 @@ $(" ")?[A-Z]+[0-9]+ {
 	}
 }
 
-<RECORD>[0-9]+"/"[0-9]+ {char dy[3];
- dy[0]=yytext[0];dy[1]=yytext[1];dy[2]='\0';
- char mt[3];mt[0]=yytext[3];mt[1]=yytext[4];mt[3]='\0';
- t1.date=atoi(dy);t1.month=atoi(mt);printf("%d-%d",t1.date,t1.month);
- strcpy(t1.custId,customer);
+<RECORD>[0-9]+"/"[0-9]+ {
+	char dy[3];
+ 	dy[0]=yytext[0]; dy[1]=yytext[1]; dy[2]='\0';
+ 	char mt[3];
+ 	mt[0]=yytext[3]; mt[1]=yytext[4]; mt[3]='\0';
+ 	t1.date=atoi(dy);
+	if(t1.date > 30 || t1.date < 1)
+	{
+		exit(EXIT_FAILURE);
+	}
+	t1.month=atoi(mt);
+	if(t1.month > 12 || t1.month < 1)
+	{
+		exit(EXIT_FAILURE);
+	}
+	printf("%d-%d",t1.date,t1.month);
+ 	strcpy(t1.custId,customer);
 }
 <RECORD>; {BEGIN RECORD;}
 <RECORD>;\n {BEGIN 0;}
 \n {return 1;}
+"//" {}
 %%
 
 int main(){
-//\n {return 0;}
 yyin=fopen("data.txt","r+");
+FILE *input = fopen("input.txt", "r");
+
 yylex();
-printf("Enter day and month as dd mm: ");
-int d,m;
 
-scanf("%d %d",&d,&m);
 
-printf("\n$%d%s",arrVal[d-1+arrDay[m-1]],(arrCust[d-1+arrDay[m-1]]).custId);
+strcpy(input_text,input);
+input_date = (input_text[0] - '0')*10 + (input_text[1] - '0');
+input_month = (input_text[3] - '0')*10 + (input_text[4] - '0');
+
+printf("\n$%d%s",arrVal[input_date-1+arrDay[input_month-1]],(arrCust[input_date-1+arrDay[input_month-1]]).custId);
 
 }
 
